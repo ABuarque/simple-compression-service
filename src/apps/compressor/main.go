@@ -43,7 +43,8 @@ func compressAndSend(in *in) {
 	if err != nil {
 		log.Println("failed invoking sync on file: ", err)
 	}
-	C.onCompress(C.CString(fileName), C.CString(compressedFile))
+	res := int(C.onCompress(C.CString(fileName), C.CString(compressedFile)))
+	fmt.Println("result ", res)
 	err = os.Remove(fileName)
 	if err != nil {
 		log.Println(fmt.Sprintf("failed to remove file %s: %q", fileName, err))
