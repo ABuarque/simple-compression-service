@@ -1,0 +1,14 @@
+language: go
+
+services:
+- docker
+
+script:
+- cd scripts/
+- echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_LOGIN" --password-stdin
+- "./build_docker_images.sh prod"
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
