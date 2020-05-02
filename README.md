@@ -1,4 +1,5 @@
 # Simple Compression Service (a.k.a Amassa!)
+[![Build Status](https://travis-ci.com/ABuarque/simple-compression-service.svg?branch=master)](https://travis-ci.com/ABuarque/simple-compression-service)
 
 This project is a compressor/decompressor system made with two microservices, a frontend and a reverse proxy. The compression/decompression system uses [Huffman algorithm](https://en.wikipedia.org/wiki/Huffman_coding) and it is written in C programing language. As the main project lanaguage is Go, was used [CGO](https://golang.org/cmd/cgo/#hdr-Using_cgo_with_the_go_command) to make possible go code call the C API. For file storage this project uses [pCloud](https://www.pcloud.com/) and a link of the pushed file is send by email to the client. 
 
