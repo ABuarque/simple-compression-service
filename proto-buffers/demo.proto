@@ -6,8 +6,7 @@ package amassa;
 message Request {
     string email = 1;
     string name = 2;
-    string extension = 3;
-    string bytes = 4;
+    string bytes = 3;
     string command = 5;
 }
 
