@@ -1,12 +1,18 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
+	"fmt"
+	amassa "inputhandler/proto"
 	"log"
+	"net"
 	"net/http"
 	"os"
 
 	"github.com/ABuarque/simple-compression-service/src/libs/redis"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 // it is the message that will be published
@@ -54,12 +60,27 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(payload)
 }
 
+type Server struct{}
+
+// RequestAction is a
+func (s *Server) RequestAction(ctx context.Context, req *amassa.Request) (*amassa.Response, error) {
+	return &amassa.Response{}, nil
+}
+
 func main() {
 	port := os.Getenv("SERVER_PORT")
 	if port == "" {
 		port = "8081"
 	}
 	re = redis.New()
-	http.HandleFunc("/process", handleRequest)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	// http.HandleFunc("/process", handleRequest)
+	// log.Fatal(http.ListenAndServe(":"+port, nil))
+	listen, err := net.Listen("tcp", ":"+port)
+	if err != nil {
+		fmt.Printf("failed to listen: %v\n", err)
+	}
+	grpcServer := grpc.NewServer()
+	amassa.RegisterInputHandlerServiceServer(grpcServer, &Server{})
+	reflection.Register(grpcServer)
+	grpcServer.Serve(listen)
 }
