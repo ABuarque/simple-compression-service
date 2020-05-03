@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	amassa "inputhandler/proto"
 	"log"
@@ -60,11 +61,36 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(payload)
 }
 
+// Server is according the interface contract
 type Server struct{}
 
 // RequestAction is a
 func (s *Server) RequestAction(ctx context.Context, req *amassa.Request) (*amassa.Response, error) {
-	return &amassa.Response{}, nil
+	fmt.Println("Chegou oia ", req)
+	fmt.Println("name: ", req.GetName())
+	in := in{
+		File:    req.GetBytes(),
+		Email:   req.GetEmail(),
+		Command: req.GetCommand(),
+	}
+	payloadAsBytes, err := json.Marshal(in)
+	if err != nil {
+		log.Println("failed to marshal payload: ", err)
+		return nil, errors.New("failed to marshal value")
+	}
+	if req.GetCommand() == "compress" {
+		re.Publish("compression", string(payloadAsBytes))
+		log.Println("published compression topic")
+		return &amassa.Response{
+			Status: 2,
+		}, nil
+	} else {
+		re.Publish("decompression", string(payloadAsBytes))
+		log.Println("published decompression topic")
+		return &amassa.Response{
+			Status: 2,
+		}, nil
+	}
 }
 
 func main() {
@@ -73,8 +99,6 @@ func main() {
 		port = "8081"
 	}
 	re = redis.New()
-	// http.HandleFunc("/process", handleRequest)
-	// log.Fatal(http.ListenAndServe(":"+port, nil))
 	listen, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		fmt.Printf("failed to listen: %v\n", err)
