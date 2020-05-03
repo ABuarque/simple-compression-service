@@ -24,9 +24,9 @@ func main() {
 	if port == "" {
 		port = "8086"
 	}
-	connection, err := grpc.Dial(apiHost+":8080", grpc.WithInsecure())
+	connection, err := grpc.Dial(apiHost+":8081", grpc.WithInsecure())
 	if err != nil {
-		log.Fatal("Cannot connect to server")
+		log.Fatal("cannot connect to server")
 	}
 	client = amassa.NewInputHandlerServiceClient(connection)
 	http.HandleFunc("/", homeHandler)
