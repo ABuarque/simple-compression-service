@@ -5,12 +5,15 @@ package amassa;
 // frontend and inputhandler
 message Request {
     string email = 1;
-    string  name = 2;
+    string name = 2;
     string extension = 3;
     string bytes = 4;
+    string command = 5;
 }
 
-message Response {}
+message Response {
+    int64 status = 1;
+}
 
 service InputHandlerService {
     rpc RequestAction(Request) returns (Response) {}
