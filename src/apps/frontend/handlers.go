@@ -1,9 +1,8 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
+	"context"
+	amassa "frontend/proto"
 	"html/template"
 	"log"
 	"net/http"
@@ -43,24 +42,19 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	payload := make(map[string]interface{})
-	payload["email"] = email
-	payload["file"] = encoded
-	payload["command"] = option
-	b, err := json.Marshal(payload)
-	if err != nil {
-		log.Println("error marshaling payload: ", err)
+	p := amassa.Request{
+		Email:   email,
+		Name:    header.Filename,
+		Command: option,
+		Bytes:   encoded,
+	}
+	_, e := client.RequestAction(context.Background(), &p)
+	if e != nil {
+		log.Println("error on gRPC call: ", err)
 		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}
-	res, err := http.Post(fmt.Sprintf("http://%s:8080/process", apiHost), "application/json", bytes.NewBuffer(b))
-	if err != nil {
-		log.Println("error calling compress microservice: ", err)
-		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
-		return
-	}
-	defer res.Body.Close()
-	log.Println("http call made to be processed")
+	log.Println("rpc call made to be processed")
 	h := Home{Sucess: true}
 	tmpl.Execute(w, h)
 }
