@@ -2,6 +2,6 @@
 
 protodir=../../../proto-buffers
 
-mkdir genproto
+mkdir proto
 
-protoc --go_out=plugins=grpc:genproto -I $protodir $protodir/demo.proto
+protoc --go_out=plugins=grpc:proto -I $protodir $protodir/demo.proto
