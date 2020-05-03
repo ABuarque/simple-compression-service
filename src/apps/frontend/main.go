@@ -24,12 +24,15 @@ func main() {
 	if port == "" {
 		port = "8086"
 	}
-	connection, err := grpc.Dial(apiHost+":8081", grpc.WithInsecure())
+	log.Println("host: ", apiHost)
+	connection, err := grpc.Dial(apiHost+":8080", grpc.WithInsecure())
 	if err != nil {
 		log.Fatal("cannot connect to server")
 	}
 	client = amassa.NewInputHandlerServiceClient(connection)
+	log.Println("created new gRPC client")
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/work", mainHandler)
+	log.Println("server online at ", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

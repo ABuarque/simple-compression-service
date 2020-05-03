@@ -50,7 +50,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	_, e := client.RequestAction(context.Background(), &p)
 	if e != nil {
-		log.Println("error on gRPC call: ", err)
+		log.Println("error on gRPC call: ", e)
 		showMessage("Eita, deu pau ai visse, tenta ai de novo...", w)
 		return
 	}

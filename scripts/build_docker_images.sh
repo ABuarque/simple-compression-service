@@ -32,7 +32,7 @@ while IFS= read -d $'\0' -r dir; do
     (
        cd "${dir}"
        echo "Building: ${image}"
-       docker build -t "${image}" --build-arg ACCESS_TOKEN_USR="${GITHUB_USER}" --build-arg ACCESS_TOKEN_PWD="${GITHUB_TOKEN}" . 
+       docker build --no-cache -t "${image}" --build-arg ACCESS_TOKEN_USR="${GITHUB_USER}" --build-arg ACCESS_TOKEN_PWD="${GITHUB_TOKEN}" . 
 
        echo "Pushing: ${image}"
        docker push "${image}"
