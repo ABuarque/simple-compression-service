@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
-<header>
-    
-</header>
 
 <head lang="pt-br">
     <meta charset="UTF-8">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <title>AMASSA</title>
+    <title>Amassa</title>
+    <link rel="stylesheet" type="text/css" href="tela.css">
     <style>
         *,
         *::before,
@@ -17,27 +14,44 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
-        /*form of compression and descompression*/
         form {
             margin-left: -55px;
             margin-top: 60px;
             width: 548px;
             position: center;
             padding: 2em;
-            border: 0.5px solid #45b5c494;
-            border-radius: 0.3em;
-            background: -webkit-linear-gradient( rgba(225, 228, 228, 0.603) 0%, rgba(223, 221, 221, 0.452) 53%, rgba(193, 197, 197, 0.329) 79%, rgba(184, 185, 185, 0.151) 100%);
+            border: 1.5px solid #bebcbc;
+            border-radius: 1.5em;
+            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
 
-        body{
-            background: -webkit-linear-gradient( rgb(26, 108, 121) 0%, rgba(102, 167, 175, 0.897) 53%, rgba(77, 171, 184, 0.719) 79%, rgba(123, 157, 161, 0.123) 100%);
-        }
-        
         .content {
             width: 500px;
             min-height: 560px;
             margin: 0px auto;
             position: relative;
+        }
+
+        h1 {
+            font-size: 55px;
+            color: #066a75;
+            padding: 2px 0 10px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 30px;
+            transition: all 0.5s linear;
+
+        }
+
+        h1::after {
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 4px;
+            margin-top: 10px;
+            background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+            background: linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
         }
 
         p {
@@ -49,11 +63,10 @@
         }
 
         label {
-            color: rgb(6, 82, 95);
+            color: #405c60;
             position: relative;
         }
-        
-        /*Pattern to web*/
+
         ::-webkit-input-placeholder {
             color: #bebcbc;
             font-style: italic;
@@ -76,242 +89,77 @@
             text-shadow: 0 1px 1px #333;
             font-style: italic;
             -webkit-border-radius: 5px;
-            border-radius: 3px;
+            border-radius: 5px;
         }
 
         input:not([type="checkbox"]) {
             width: 95%;
-            margin-top: 12px;
-            margin-bottom: 14px;
+            margin-top: 4px;
             padding: 11.4px;
-            border: 0.7px solid rgb(60, 216, 216);
+            border: 1px solid #b2b2b2;
             -webkit-border-radius: 4px;
-            border-radius: 3px;
+            border-radius: 4px;
             -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
 
-        /*option of selection of compression and decompression*/
         #select-op {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background: url(https://icon-icons.com/icons2/1674/PNG/32/arrowheaddown_110942.png) 100% 50% no-repeat;
+            background: url(https://icon-icons.com/icons2/906/PNG/32/down-arrows_icon-icons.com_70186.png) 100% 50% no-repeat;
             background-color: #fff;
             width: 100%;
             margin-top: 4px;
             padding: 15px;
-            border: 0.7px solid rgb(60, 216, 216);
+            border: 1px solid #b2b2b2;
             padding-left: 230px;
             font-size: 15px;
-            color: rgb(6, 82, 95);
             -webkit-border-radius: 3px;
             border-radius: 3px;
             -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
             box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
         }
-        
+
         input[type="submit"] {
             width: 549px;
             height: 50px;
             cursor: pointer;
-            background: rgba(26, 99, 117, 0.87);
+            background: #066a75;
             padding: 8px 5px;
             color: #fff;
             font-size: 20px;
-            border: 1px solid rgb(60, 216, 216);
+            border: 1px solid #fff;
             margin-bottom: 5px;
             text-shadow: 0 1px 1px #333;
+
             -webkit-border-radius: 5px;
             border-radius: 5px;
-        }
 
-        textarea{
-            border-radius: 3px;
-            border: 1px solid rgb(50, 189, 189);
+            transition: all 0.5s linear;
         }
 
         input[type="submit"]:hover {
             background: #066a75;
         }
-
-        body, ul, li{
-            margin: 0px;
-            padding: 0%;
-            list-style: none;
-            font-size: 1.2rem;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-        .logo{
-            font-size: 30px;
-        }
-        
-        .header{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color:rgba(38, 109, 121, 0.904);
-        }
-        
-        .menu{
-            display:flex;
-        }
-
-        .menu li {
-            margin-left: 20px;
-        }
-
-        .menu li a {
-            display: block;
-            padding: 8px;
-            font-size: 15px;
-        }
-
-        .about{
-            font-family: Roboto;
-            font-size: 200%;
-            text-align: center;
-            padding-top: 250px;
-            color: rgb(6, 94, 109);
-            margin-bottom: 10px;
-        }
-
-        /*link of GitHub*/
-        .about-a {
-            color:rgb(6, 94, 109);
-        }
-
-        .about-a:hover{
-            text-decoration: underline;
-            color: black;
-        }
-
-        /*descrition of about*/
-        .about-p{
-            text-align: center;
-            color: rgb(6, 94, 109);
-            padding-bottom: 250px;
-        }
-
-        .contact{
-            text-align: center;
-            color: rgb(6, 94, 109);
-            font-size: 35px;
-        }
-
-        .form-contact{
-            margin:60px;
-            width: 350px;
-            border: 0.5px solid #45b5c494;
-            border-radius: 0.3em;
-            background: -webkit-linear-gradient( rgba(225, 228, 228, 0.603) 0%, rgba(223, 221, 221, 0.452) 53%, rgba(193, 197, 197, 0.329) 79%, rgba(184, 185, 185, 0.151) 100%);
-        }
-
-        #name_contact{
-            width: 94%;
-            margin-top: 4px;
-            padding: 11.4px;
-            -webkit-border-radius: 4px;
-            border: 0.7px solid rgb(60, 216, 216);
-            border-radius: 3px;
-            -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-        }
-            
-        #login_contact{
-            width: 94%;
-            margin-top: 4px;
-            padding: 11.4px;
-            -webkit-border-radius: 4px;
-            border: 1px solid rgb(60, 216, 216);
-            border-radius: 3px;
-            -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-        }
-
-        #subject{
-            width: 94%;
-            margin-top: 4px;
-            padding: 11.4px;
-            -webkit-border-radius: 4px;
-            border: 1px solid rgb(60, 216, 216);
-            border-radius: 3px;
-            -webkit-box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-            box-shadow: 0px 1px 2px 0px rgba(168, 168, 168, 0.6) inset;
-        }
-
-        /*message*/
-        #msg{
-            padding: 9px;
-            border: 1px solid rgb(60, 216, 216);
-        }
-
-        #submit{
-            width: 352px;
-            height: 50px;
-            cursor: pointer;
-            background: rgba(26, 99, 117, 0.87);
-            padding: 8px 5px;
-            color: #fff;
-            font-size: 15px;
-            border: 1px solid rgb(60, 216, 216);
-            margin-bottom: 5px;
-            text-shadow: 0 1px 1px #333;
-            align-items:flex-start;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
-        }
-
-        /*susscefully execution page*/
-        .sucess{
-            color: white;
-            text-align: center;
-            font-size: 50px;
-            font-family: Roboto;
-            padding-top: 60px;
-        }
-
-        .form-sucess{
-            background: none;
-            border: none;
-        }
     </style>
 </head>
+
 <body>
     {{ if .Sucess }}
-    <!-- The html is render if the process has happened with sucess-->
-    <h1 class="sucess">Enviado com sucesso!</h1>
+    <h1>Sucess</h1>
     <div class="content">
-        <form class="form-sucess" method="GET" , action="/home">
+        <form method="GET" , action="/home">
             <p>
                 <input type="submit" value="Novo">
             </p>
         </form>
     </div>
-    <!-- Case the process has happened without sucess the html render this-->
     {{ else }}
-    <!--header-->
-    <header class="header">
-        <a href="logo" class="logo">AMASSA</a>
-        <nav>
-            <ul class="menu">
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#contact">Contato</a></li>
-                <li><a href="https://github.com/ABuarque/simple-compression-service" target="_blank">Contribua</a></li>
-            </ul>
-        </nav>
-    </header>
     <div class="content">
-        <!-- form of compression and decompression-->
         <div id="amassa">
             <form method="POST" enctype="multipart/form-data" action="/work">
+                <h1>AMASSA!</h1>
                 <p>
                     <label for="name_login">Seu e-mail</label>
                     <input id="name_login" name="email" required="required" type="text"
@@ -331,34 +179,8 @@
                 </p>
             </form>
         </div>
-        <div>
-            <h1 class="about" id="about">SOBRE</h1>
-            <p class="about-p">Amassa é um projeto open source feito a partir de um <a class="about-a" href="https://github.com/ABuarque/huffman" target="_blank">trabalho de faculdade sobre o algoritmo de compressão de Huffman.</a></p>
-        </div>
-        <!-- form of contact -->
-        <div>
-            <form class="form-contact">
-                <p>
-                    <h2 class="contact" id="contact">CONTATO</h2>
-                    <input id="name_contact" name="name_contact" required="required" type="text" placeholder="Seu nome">
-                </p>
-                <p>
-                    <input id="login_contact" name="email_contact" required="required" type="text" placeholder="E-mail">          
-                </p>
-                <p>
-                    <input id="subject"  name="subject" required="required" type="text" placeholder="Assunto">
-                </p>
-                <p>
-                    <textarea id="msg" name="comment" rows="7" cols="40" required="required" placeholder="Mensagem"></textarea>
-                </p>
-                <p>
-                    <input id="submit" type="submit" value="ENVIAR" style="align-self: center;">
-                </p>
-            </form>
-        </div>
     </div>
     {{ end }}
-
 </body>
 
 </html>
